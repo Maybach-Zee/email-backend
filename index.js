@@ -4,12 +4,6 @@ import "dotenv/config";
 import { sendVerificationEmail } from "./src/graphMailer.js";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`🚀 Backend running on port ${PORT}`);
-});
-
 
 app.use(cors());
 app.use(express.json());
@@ -22,7 +16,7 @@ app.post("/send-email", async (req, res) => {
   }
 
   try {
-    await sendVerificationEmail(email, "654321", "Test User");
+    await sendVerificationEmail(email, "123456", "Test User");
     res.json({ message: "Email sent successfully" });
   } catch (err) {
     console.error(err);
@@ -30,6 +24,8 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Backend running on port ${PORT}`);
 });
