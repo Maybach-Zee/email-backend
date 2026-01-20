@@ -5,6 +5,10 @@ import { sendVerificationEmail } from "./src/graphMailer.js";
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.send("Backend is running! Use POST /send-email to send emails.");
+});
+
 app.use(cors());
 app.use(express.json());
 
